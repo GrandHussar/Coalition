@@ -27,23 +27,6 @@ def read_images(path):
 
 
 
-
-def face_rec():
-  names = ['Hyacinth', 'Luigi', 'Kurt'] # Put your names here for faces to recognize
-  if len(sys.argv) < 2:
-    print("USAGE: facerec_demo.py </path/to/images> [</path/to/store/images/at>]")
-    sys.exit()
-
-
-  [X, y] = read_images('data_set.csv')
-  y = np.asarray(y, dtype=np.int32)
-
-  model = cv2.face.EigenFaceRecognizer_create()
-  model.train(X, y)
-
-  camera = cv2.VideoCapture(0)
-  face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-
 def face_rec():
   names = ['hYA', 'Luigi'] # Put your names here for faces to recognize
   
