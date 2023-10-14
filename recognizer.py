@@ -27,8 +27,14 @@ def read_images(path):
 
 
 
+
 def face_rec():
-  names = ['hYA', 'Luigi'] # Put your names here for faces to recognize
+  names = ['Hyacinth', 'Luigi' , 'Kurt', 'Peter', 'Laupher'] # Put your names here for faces to recognize
+  # 1-20 params[0]
+  # 21-40 params[1]
+  # 41-60 params [2]
+  # 61-80 params [3]
+  # 81-100 params[4]
   
  
 
@@ -54,11 +60,17 @@ def face_rec():
       roi = cv2.resize(gray, (200, 200), interpolation=cv2.INTER_LINEAR)
       params = model.predict(roi)
       print (params)
-      if(params[0] > 20 and params[0] < 40 and params[1]> 5000):
-        cv2.putText(img, names[1] + ", " + str(params[1]), (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
-      if(params[0] > 40 and params[1]> 5000):
+      if(params[0] > 0 and params[0] < 20 and params[1] > 5000): #Hyacinth
         cv2.putText(img, names[0] + ", " + str(params[1]), (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
-      if(params[1]<5001):
+      if(params[0] > 20 and params[0] < 40 and params[1]> 5000): #Luigi
+        cv2.putText(img, names[1] + ", " + str(params[1]), (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+      if(params[0] > 40 and params[0] < 60 and params[1]> 5000): # Kurt
+        cv2.putText(img, names[2] + ", " + str(params[1]), (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+      if(params[0] > 60 and params[0] < 80 and params[1]> 5000): # Kurt
+        cv2.putText(img, names[3] + ", " + str(params[1]), (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+      if(params[0] > 60 and params[0] < 80 and params[1]> 5000): # Laupher
+        cv2.putText(img, names[4] + ", " + str(params[1]), (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+      if(params[1]<5001): # Stranger
         cv2.putText(img, 'Not Recognized' + ", " + str(params[1]), (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
   
 
