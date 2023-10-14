@@ -40,8 +40,10 @@ def face_rec():
 
   [X, y] = read_images('data_set.csv')
   y = np.asarray(y, dtype=np.int32)
-
-  model = cv2.face.EigenFaceRecognizer_create()
+  #model = cv2.face.EigenFaceRecognizer_create()
+  #model = cv2.face.FisherFaceRecognizer_create()
+  model = cv2.face.LBPHFaceRecognizer_create()
+  
   model.train(X, y)
 
   camera = cv2.VideoCapture(0)
@@ -60,17 +62,17 @@ def face_rec():
       roi = cv2.resize(gray, (200, 200), interpolation=cv2.INTER_LINEAR)
       params = model.predict(roi)
       print (params)
-      if(params[0] > 0 and params[0] < 20 and params[1] > 5000): #Hyacinth
+      if(params[0] > 0 and params[0] < 20 and params[1] > 50): #Hyacinth
         cv2.putText(img, names[0] + ", " + str(params[1]), (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
-      if(params[0] > 20 and params[0] < 40 and params[1]> 5000): #Luigi
+      if(params[0] > 20 and params[0] < 40 and params[1]> 50): #Luigi
         cv2.putText(img, names[1] + ", " + str(params[1]), (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
-      if(params[0] > 40 and params[0] < 60 and params[1]> 5000): # Kurt
+      if(params[0] > 40 and params[0] < 60 and params[1]> 50): # Kurt
         cv2.putText(img, names[2] + ", " + str(params[1]), (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
-      if(params[0] > 60 and params[0] < 80 and params[1]> 5000): # Kurt
+      if(params[0] > 60 and params[0] < 80 and params[1]> 50): # Peters
         cv2.putText(img, names[3] + ", " + str(params[1]), (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
-      if(params[0] > 60 and params[0] < 80 and params[1]> 5000): # Laupher
+      if(params[0] > 80 and params[0] < 100 and params[1]> 50): # Laupher
         cv2.putText(img, names[4] + ", " + str(params[1]), (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
-      if(params[1]<5001): # Stranger
+      if(params[1]<51): # Stranger
         cv2.putText(img, 'Not Recognized' + ", " + str(params[1]), (x, y - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
   
 
